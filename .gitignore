@@ -1,0 +1,15 @@
+# VS code settings files
+.vscode/
+
+# pycharm project files
+.idea/
+
+# build artifacts and logs
+.venv/
+venv/
+
+# python cache
+__pycache__/
+
+# terraform files
+.terraform/
