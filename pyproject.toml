@@ -22,3 +22,9 @@ mypy = "^1.13.0"
 [build-system]
 requires = ["poetry-core"]
 build-backend = "poetry.core.masonry.api"
+
+[tool.black]
+line_length = 99
+
+[tool.isort]
+profile = "black"
