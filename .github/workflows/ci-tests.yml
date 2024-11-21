@@ -1,6 +1,10 @@
 name: CI Tests - MagnetoApp
 
 on:
+  push:
+    branches:
+      - master
+
   pull_request:
     branches:
       - master
@@ -17,13 +21,27 @@ jobs:
       - name: Setup Python
         uses: actions/setup-python@v4
         with:
-          python-version: '3.11.4'
+          python-version: "3.11.4"
 
       - name: Install dependencies
         run: |
           python -m pip install --upgrade pip
           pip install poetry
           poetry install --no-root
+
+      - name: Run linters and type checkers
+        run: |
+          echo "Running flake8..."
+          poetry run flake8 app
+
+          echo "Running black..."
+          poetry run black --check app
+
+          echo "Running isort..."
+          poetry run isort --check-only app
+
+          echo "Running mypy..."
+          poetry run mypy app
 
       - name: Run tests with coverage
         run: poetry run pytest --cov=app/tests/ --cov-report=xml
