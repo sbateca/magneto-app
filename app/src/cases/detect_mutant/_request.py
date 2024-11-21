@@ -14,6 +14,8 @@ class DetectMutantRequest(BaseModel):
         if dna_size < 4:
             raise ValueError("DNA must have at least 4 strings")
         for dna_string in value:
+            if " " in dna_string:
+                raise ValueError("DNA strings must not have spaces")
             if len(dna_string) != dna_size:
                 raise ValueError("DNA strings must have the same size")
         return value
@@ -22,6 +24,7 @@ class DetectMutantRequest(BaseModel):
     def check_dna_characters(cls, value: List[str]) -> List[str]:
         for dna_string in value:
             for dna_character in dna_string:
-                if dna_character not in _VALID_DNA_CHARACTERS:
+                adjusted_dna_character = dna_character.strip().upper()
+                if adjusted_dna_character not in _VALID_DNA_CHARACTERS:
                     raise ValueError("DNA strings must have valid characters")
         return value
