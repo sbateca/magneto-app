@@ -50,6 +50,7 @@ resource "aws_api_gateway_deployment" "gw_deployment" {
     aws_api_gateway_integration.lambda,
   ]
   rest_api_id = aws_api_gateway_rest_api.magneto_api.id
+  stage_name  = var.environment_name
 }
 
 output "url" {
