@@ -29,3 +29,7 @@ variable "timeout" {
   default     = 10
   description = "Lambda timeout"
 }
+
+variable "api_gateway_execution_arn" {
+  type = string
+}

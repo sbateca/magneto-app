@@ -93,14 +93,3 @@ jobs:
         run: |
           terraform apply -auto-approve tfplan
         working-directory: ./${{ env.INFRASTRUCTURE_DIR }}
-      
-      - name: Capture Outputs
-        id: outputs
-        run: |
-          terraform output -json > outputs.json
-          echo "::set-output name=api_url::$(jq -r .api_url.value outputs.json)"
-        env:
-          TF_IN_AUTOMATION: true
-      
-      - name: Display API URL
-        run: echo "API URL ${{ steps.outputs.outputs.api_url }}"

@@ -5,6 +5,7 @@ module "lambda" {
   region           = local.region
   image_uri        = var.image_uri
   image_tag        = var.image_tag
+  api_gateway_execution_arn = module.gateway.api_gateway_execution_arn
 }
 
 module "gateway" {
