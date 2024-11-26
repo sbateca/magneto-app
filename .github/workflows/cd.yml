@@ -68,14 +68,12 @@ jobs:
         with:
           platforms: linux/x86_64
           file: ./Dockerfile
-          tags: ${{ env.REGISTRY }}/${{ env.REPOSITORY }}:${{ env.IMAGE_TAG }} , ${{ env.REGISTRY }}/${{ env.REPOSITORY }}:${{ env.IMAGE_TAG_LATEST }}
+          tags: ${{ env.REGISTRY }}/${{ env.REPOSITORY }}:${{ env.IMAGE_TAG_LATEST }}
           push: true
 
       - name: Init Terraform
         run: |
-          terraform init \
-            -backend-config="key=tfstate/${{ env.IMAGE_REPO_NAME }}.tfstate" \
-            -reconfigure
+          terraform init
         working-directory: ./${{ env.INFRASTRUCTURE_DIR }}
 
       - name: Plan Terraform
@@ -91,7 +89,7 @@ jobs:
 
       - name: Apply Terraform
         env:
-          TF_VAR_IMAGE_TAG: ${{ steps.build-push-image.outputs.digest }}
+          TF_VAR_IMAGE_TAG: ${{ env.REPOSITORY }}:${{ env.IMAGE_TAG_LATEST }}
         run: |
           terraform apply -auto-approve tfplan
         working-directory: ./${{ env.INFRASTRUCTURE_DIR }}
