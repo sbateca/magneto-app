@@ -8,6 +8,16 @@ resource "aws_lambda_function" "backend" {
   role          = var.lambda_role_arn
 }
 
+resource "aws_lambda_function_url" "backend_url" {
+  function_name = aws_lambda_function.backend.function_name
+  authorization_type = "NONE"
+  cors {
+    allow_origins = ["*"]
+    allow_methods = ["GET", "POST"]
+    allow_headers = ["*"]
+  }
+}
+
 resource "aws_lambda_permission" "permission" {
   statement_id  = "AllowAPIGatewayInvoke"
   action        = "lambda:InvokeFunction"
