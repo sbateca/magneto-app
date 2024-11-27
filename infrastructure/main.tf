@@ -1,10 +1,10 @@
 module "lambda" {
-  source           = "./common/lambda"
-  environment_name = local.environment_name
-  lambda_role_arn  = module.iam.lambda_role_arn
-  region           = local.region
-  image_uri        = var.image_uri
-  image_tag        = var.image_tag
+  source                    = "./common/lambda"
+  environment_name          = local.environment_name
+  lambda_role_arn           = module.iam.lambda_role_arn
+  region                    = local.region
+  image_uri                 = var.image_uri
+  image_tag                 = var.image_tag
   api_gateway_execution_arn = module.gateway.api_gateway_execution_arn
 }
 
