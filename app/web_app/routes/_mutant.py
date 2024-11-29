@@ -12,8 +12,3 @@ async def detect_mutant(
     detect_mutant_case: DetectMutantUseCase = Depends(detect_mutant_use_case),
 ) -> DetectMutantResponse:
     return await detect_mutant_case(request=detect_mutant_request)
-
-
-@mutant_router.get("/")
-def dummy_endpoint() -> dict:
-    return {"Message": "MagnetoApp is running!"}
