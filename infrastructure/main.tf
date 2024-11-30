@@ -24,3 +24,8 @@ module "ecr" {
   source        = "./common/ecr"
   ecr_repo_name = format("%s-%s-%s", local.app_name, "ecr", local.environment_name)
 }
+
+module "dynamo_db" {
+  source         = "./common/dynamo_db"
+  dna_table_name = local.dna_table_name
+}
