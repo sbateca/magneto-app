@@ -1,0 +1,13 @@
+version: "3.8"
+
+services:
+  magneto-api:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "8001:8001"
+    volumes:
+      - .:/home/magnetoapp/api
+    environment:
+      - PYTHONUNBUFFERED=1
