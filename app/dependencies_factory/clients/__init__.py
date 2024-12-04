@@ -1,0 +1,1 @@
+from ._dynamodb_client_factory import dynamodb_client_for_mutant_data

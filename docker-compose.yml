@@ -1,10 +1,8 @@
-version: "3.8"
-
 services:
   magneto-api:
     build:
       context: .
-      dockerfile: Dockerfile
+      dockerfile: dockerfile.local
     ports:
       - "8001:8001"
     volumes:

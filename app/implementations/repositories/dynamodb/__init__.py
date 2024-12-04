@@ -1,0 +1,1 @@
+from .detect_mutant_repository import DynamoDetectMutantRepository
