@@ -1,5 +1,5 @@
 resource "aws_lambda_function" "backend" {
-  image_uri     = "${var.image_uri}:${var.image_tag}"
+  image_uri     = "${var.image_uri}@${var.image_tag}"
   package_type = "Image"
   memory_size = var.memory_size
   timeout = var.timeout
