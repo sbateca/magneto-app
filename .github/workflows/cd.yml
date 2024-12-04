@@ -76,6 +76,10 @@ jobs:
       - name: Plan Terraform
         env:
           TF_VAR_IMAGE_TAG: ${{ steps.build-push-image.outputs.digest }}
+          TF_VAR_MAGNETO_DNA_DATA_TABLE: ${{ secrets.MAGNETO_DNA_DATA_TABLE }}
+          TF_VAR_AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          TF_VAR_AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          TF_VAR_AWS_REGION: ${{ secrets.AWS_REGION }}
         run: |
           terraform plan \
               -var="app_name=${{ env.IMAGE_REPO_NAME }}" \
