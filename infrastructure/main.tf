@@ -6,6 +6,9 @@ module "lambda" {
   image_uri                 = var.image_uri
   image_tag                 = var.image_tag
   api_gateway_execution_arn = module.gateway.api_gateway_execution_arn
+  magneto_dna_data_table    = var.magneto_dna_data_table
+  aws_access_key_id         = var.aws_access_key_id
+  aws_secret_access_key     = var.aws_secret_access_key
 }
 
 module "gateway" {
