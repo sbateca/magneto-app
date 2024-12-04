@@ -76,22 +76,11 @@ jobs:
       - name: Plan Terraform
         env:
           IMAGE_TAG: ${{ steps.build-push-image.outputs.digest }}
-          MAGNETO_DNA_DATA_TABLE: ${{ secrets.MAGNETO_DNA_DATA_TABLE }}
-          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
-          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          AWS_REGION: ${{ secrets.AWS_DEFAULT_REGION }}
-          IMAGE_REPO_NAME: ${{ secrets.IMAGE_REPO_NAME }}
-          BACKEND_ECR_URI: ${{ secrets.BACKEND_ECR_URI }}
-          INFRASTRUCTURE_DIR: infrastructure/
         run: |
           terraform plan \
             -var="app_name=${IMAGE_REPO_NAME}" \
             -var="image_tag=${IMAGE_TAG}" \
             -var="image_uri=${BACKEND_ECR_URI}" \
-            -var="magneto_dna_data_table=${MAGNETO_DNA_DATA_TABLE}" \
-            -var="aws_access_key_id=${AWS_ACCESS_KEY_ID}" \
-            -var="aws_secret_access_key=${AWS_SECRET_ACCESS_KEY}" \
-            -var="region=${AWS_REGION}" \
             -out=tfplan
         working-directory: ./${{ env.INFRASTRUCTURE_DIR }}
 
