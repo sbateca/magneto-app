@@ -9,7 +9,3 @@ variable "image_tag" {
 variable "app_name" {
   type = string
 }
-
-variable "region" {
-  type = string
-}
