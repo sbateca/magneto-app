@@ -49,7 +49,43 @@ resource "aws_iam_role_policy" "lambda_ecr_permissions" {
             "lambda:InvokeFunction"
          ],
          "Resource": "*"
-      }
+      },
+      {
+   "Effect": "Allow",
+   "Action": [
+				"dynamodb:DescribeImport",
+				"dynamodb:DescribeContributorInsights",
+				"dynamodb:ListTagsOfResource",
+				"logs:CreateLogStream",
+				"dynamodb:DescribeTable",
+				"dynamodb:PartiQLSelect",
+				"dynamodb:GetItem",
+				"dynamodb:DescribeContinuousBackups",
+				"dynamodb:DescribeExport",
+				"dynamodb:DescribeKinesisStreamingDestination",
+				"dynamodb:GetResourcePolicy",
+				"dynamodb:BatchGetItem",
+				"dynamodb:ConditionCheckItem",
+				"dynamodb:PutItem",
+				"dynamodb:Scan",
+				"dynamodb:DescribeStream",
+				"dynamodb:Query",
+				"dynamodb:DescribeTimeToLive",
+				"logs:CreateLogGroup",
+				"logs:PutLogEvents",
+				"dynamodb:DescribeGlobalTableSettings",
+				"dynamodb:DescribeGlobalTable",
+				"dynamodb:GetShardIterator",
+				"dynamodb:DescribeBackup",
+				"dynamodb:DescribeTableReplicaAutoScaling",
+				"dynamodb:GetRecords"
+			],
+			"Resource": [
+				"arn:aws:logs:*:*:*",
+				"arn:aws:dynamodb:us-east-1:334325648084:table/magneto-dna-data"
+			]
+}
+
    ]
 }
 POLICY
