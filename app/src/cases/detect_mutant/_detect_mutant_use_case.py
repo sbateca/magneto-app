@@ -1,3 +1,4 @@
+from app.src.domain.repositories import DetectMutantRepository
 from app.src.exceptions import MutantException, NotMutantException
 
 from ._request import DetectMutantRequest
@@ -5,14 +6,17 @@ from ._response import DetectMutantResponse
 
 
 class DetectMutantUseCase:
-    def __init__(self) -> None:
-        pass
+    def __init__(self, detect_mutant_repository: DetectMutantRepository) -> None:
+        self.detect_mutant_repository = detect_mutant_repository
 
     async def __call__(self, request: DetectMutantRequest) -> DetectMutantResponse:
         try:
             is_mutant = self._is_mutant(request.dna)
+            await self.detect_mutant_repository.save_sequence(request.dna, is_mutant)
+
             if not is_mutant:
                 raise NotMutantException(status_code=403, detail="DNA is not mutant")
+
             return DetectMutantResponse(is_mutant=is_mutant)
 
         except MutantException as exception:

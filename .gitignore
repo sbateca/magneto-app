@@ -13,3 +13,6 @@ __pycache__/
 
 # terraform files
 .terraform/
+
+# environment variables files
+.env

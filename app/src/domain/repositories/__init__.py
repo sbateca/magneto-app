@@ -1,0 +1,1 @@
+from ._detect_mutant_repository import DetectMutantRepository

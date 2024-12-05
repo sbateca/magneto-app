@@ -1,1 +1,6 @@
-from ._mutant_exceptions import MutantException, NotMutantException
+from ._mutant_exceptions import (
+    CreateDnaSequenceException,
+    GetAllDnaSequencesException,
+    MutantException,
+    NotMutantException,
+)

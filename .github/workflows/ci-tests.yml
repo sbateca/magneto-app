@@ -44,6 +44,11 @@ jobs:
           poetry run mypy app
 
       - name: Run tests with coverage
+        env:
+          MAGNETO_DNA_DATA_TABLE: "some-table-name"
+          AWS_ACCESS_KEY_ID: "some-key-id"
+          AWS_SECRET_ACCESS_KEY: "some-secret-access-key"
+          AWS_REGION: "us-east-1"
         run: poetry run pytest --cov=app/tests/ --cov-report=xml
 
       - name: Upload coverage reports to Codecov
