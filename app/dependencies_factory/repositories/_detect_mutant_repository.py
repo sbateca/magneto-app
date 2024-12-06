@@ -1,4 +1,4 @@
-import config
+import app.config as config
 from app.dependencies_factory.clients._dynamodb_client_factory import (
     dynamodb_client_for_mutant_data,
 )
