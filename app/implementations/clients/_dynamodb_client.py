@@ -7,11 +7,12 @@ class DynamoDBClient:
     def __init__(self, table: str):
         self.table = table
 
-    async def save(self, item: Dict) -> None:
+    async def save(self, item: Dict) -> Union[Dict, None]:
         session = aioboto3.Session()
         async with session.resource("dynamodb") as dynamodb:
             table = await dynamodb.Table(self.table)
-            await table.put_item(Item=item)
+            item = await table.put_item(Item=item)
+            return item
 
     async def get_all(self) -> Union[List[dict], None]:
         session = aioboto3.Session()
