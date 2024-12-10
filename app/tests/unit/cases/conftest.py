@@ -1,4 +1,4 @@
-from typing import Any, Callable
+from typing import Any, Callable, Sequence
 
 import pytest
 from faker import Faker
@@ -23,9 +23,13 @@ def detect_mutant_request_data_factory(faker: Faker) -> Callable:
 
 
 @pytest.fixture
-def detect_mutant_case_mock_dependencies(mocker: MockerFixture) -> Any:
-    return {
-        "detect_mutant_repository": mocker.Mock(
-            save_sequence=mocker.AsyncMock(), get_all_sequences=mocker.AsyncMock()
-        )
-    }
+def detect_mutant_case_dependencies_factory(mocker: MockerFixture) -> Callable:
+    def __factory(sequences: list[Sequence] = []) -> dict[str, Any]:
+        return {
+            "detect_mutant_repository": mocker.Mock(
+                save_sequence=mocker.AsyncMock(),
+                get_all_sequences=mocker.AsyncMock(return_value=sequences),
+            )
+        }
+
+    return __factory

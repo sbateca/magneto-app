@@ -1,1 +1,2 @@
 from .repositories import detect_mutant_repository_factory
+from .use_cases import detect_mutant_use_case, get_dna_verifications_statistics_use_case

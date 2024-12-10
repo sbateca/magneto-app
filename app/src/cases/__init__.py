@@ -3,3 +3,7 @@ from .detect_mutant import (
     DetectMutantResponse,
     DetectMutantUseCase,
 )
+from .get_dna_verification_statistics import (
+    GetDNAVerificationStatisticsCase,
+    GetDNAVerificationStatisticsResponse,
+)

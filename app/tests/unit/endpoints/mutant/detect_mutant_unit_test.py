@@ -30,8 +30,8 @@ class TestDetectMutant:
         self, dependencies_factory: Callable
     ):
         expected_response = {"is_mutant": True}
-        dependencies_factory = dependencies_factory()
-        response = await detect_mutant(**dependencies_factory)
+        dependencies = dependencies_factory()
+        response = await detect_mutant(**dependencies)
 
         assert response.__dict__ == expected_response
 
@@ -39,14 +39,14 @@ class TestDetectMutant:
     async def test__detect_mutant_raised_exception_when_use_case_raises_exception(
         self, dependencies_factory: Callable
     ):
-        dependencies_factory = dependencies_factory()
-        dependencies_factory["detect_mutant_case"].side_effect = NotMutantException(
+        dependencies = dependencies_factory()
+        dependencies["detect_mutant_case"].side_effect = NotMutantException(
             status_code=403, detail="Error message"
         )
 
         with pytest.raises(NotMutantException):
-            await detect_mutant(**dependencies_factory)
+            await detect_mutant(**dependencies)
 
-        dependencies_factory["detect_mutant_case"].assert_called_once_with(
-            request=dependencies_factory["detect_mutant_request"]
+        dependencies["detect_mutant_case"].assert_called_once_with(
+            request=dependencies["detect_mutant_request"]
         )
