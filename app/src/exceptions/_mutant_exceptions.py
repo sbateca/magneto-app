@@ -40,3 +40,13 @@ class GetAllDnaSequencesException(Exception):
     def __init__(self, message: str):
         self.message = message
         super().__init__(self.message)
+
+
+class GetDNAVerificationStatisticsException(Exception):
+    """
+    Exception raised for operations involved with DNA Sequence statistics.
+    """
+
+    def __init__(self, message: str):
+        self.message = message
+        super().__init__(self.message)

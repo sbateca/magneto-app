@@ -1,1 +1,1 @@
-from .mutant import detect_mutant_use_case
+from .mutant import detect_mutant_use_case, get_dna_verifications_statistics_use_case

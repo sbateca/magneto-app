@@ -6,3 +6,9 @@ def detect_mutant_use_case() -> DetectMutantUseCase:
     return DetectMutantUseCase(
         detect_mutant_repository=detect_mutant_repository_factory(),
     )
+
+
+def get_dna_verifications_statistics_use_case() -> DetectMutantUseCase:
+    return DetectMutantUseCase(
+        detect_mutant_repository=detect_mutant_repository_factory(),
+    )
