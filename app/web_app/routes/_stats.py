@@ -1,8 +1,6 @@
 from fastapi import APIRouter, Depends
 
-from app.dependencies_factory.use_cases.mutant import (
-    get_dna_verifications_statistics_use_case,
-)
+from app.dependencies_factory.use_cases import get_dna_verifications_statistics_use_case
 from app.src.cases import (
     GetDNAVerificationStatisticsCase,
     GetDNAVerificationStatisticsResponse,
