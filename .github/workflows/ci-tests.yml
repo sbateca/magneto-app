@@ -48,7 +48,7 @@ jobs:
           MAGNETO_DNA_DATA_TABLE: "some-table-name"
           AWS_ACCESS_KEY_ID: "some-key-id"
           AWS_SECRET_ACCESS_KEY: "some-secret-access-key"
-          AWS_REGION: "us-east-1"
+          AWS_DEFAULT_REGION: "us-east-1"
         run: poetry run pytest --cov=app --cov-report=xml
 
       - name: Upload coverage reports to Codecov
