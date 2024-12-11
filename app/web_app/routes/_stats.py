@@ -9,7 +9,7 @@ from app.src.cases import (
 statistics_router = APIRouter(prefix="/stats")
 
 
-@statistics_router.get("/")
+@statistics_router.get("")
 async def get_dna_statistics(
     get_dna_statistics_use_case: GetDNAVerificationStatisticsCase = Depends(
         get_dna_verifications_statistics_use_case

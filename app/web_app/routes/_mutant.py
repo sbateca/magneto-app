@@ -6,7 +6,7 @@ from app.src.cases import DetectMutantRequest, DetectMutantResponse, DetectMutan
 mutant_router = APIRouter(prefix="/mutant")
 
 
-@mutant_router.post("/")
+@mutant_router.post("")
 async def detect_mutant(
     detect_mutant_request: DetectMutantRequest,
     detect_mutant_case: DetectMutantUseCase = Depends(detect_mutant_use_case),
