@@ -33,11 +33,10 @@ jobs:
           aws-secret-access-key: ${{ env.AWS_SECRET_ACCESS_KEY }}
           aws-region: ${{ env.AWS_DEFAULT_REGION }}
         
-      - name: Create ECR if not exists
+      - name: Ensure ECR Repository Exists
         run: |
-          if ! aws ecr describe-repositories --repository-names "${{ env.IMAGE_REPO_NAME }}" --region ${{ env.AWS_DEFAULT_REGION }}; then
-            aws ecr create-repository --repository-name "${{ env.IMAGE_REPO_NAME }}" --region ${{ env.AWS_DEFAULT_REGION }}
-          fi
+          aws ecr describe-repositories --repository-names "${{ env.IMAGE_REPO_NAME }}" --region ${{ env.AWS_DEFAULT_REGION }} || \
+          aws ecr create-repository --repository-name "${{ env.IMAGE_REPO_NAME }}" --region ${{ env.AWS_DEFAULT_REGION }}
 
       - name: Log in to Amazon ECR
         id: login-ecr
