@@ -45,7 +45,7 @@ Before starting the application, you need to set up the following environment va
     AWS_SECRET_ACCESS_KEY="xxxxxx"
     AWS_DEFAULT_REGION="xxxxxx"
     ```
-    Get the `.env` values [[here]](https://pwpush.com/p/ej9_avyrot35serz_zo/r) 
+    Get the `.env` values [[here]](https://pwpush.com/p/c2_pbvokaq-0/r) 
 3. Build and run the app.
     ```bash
     make up
